@@ -1,3 +1,4 @@
+# From my dotfiles
 export FZF_DEFAULT_COMMAND='find . -printf "%P\\n"'
 export HSA_OVERRIDE_GFX_VERSION='10.3.0'
 export EDITOR='nvim'
