@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # Variables
 PARTIAL_BASH_URL="https://raw.githubusercontent.com/cortesCasado/wsl-dotfile/main/.bashrc"
 CADENA="# From my dotfiles"
@@ -17,7 +16,7 @@ fi
 PROGRAMS="unzip fzf zoxide"
 sudo apt install "$PROGRAMS"
 
-# Verifica si 'starship' está instalado
+# FNM
 if ! command -v fnm >/dev/null 2>&1; then
     echo "fnm no está instalado. Ejecutando script de instalación..."
     curl -fsSL https://fnm.vercel.app/install | bash
@@ -30,13 +29,23 @@ fnm install --lts
 corepack enable pnpm
 pnpm -v
 
+# Starship
 if ! command -v starship >/dev/null 2>&1; then
     echo "Starship no está instalado. Ejecutando script de instalación..."
     curl -sS https://starship.rs/install.sh | sh
     echo -e '\n\n#Starship config\neval "$(starship init bash)"\n\n' >> ~/.bashrc
     source ~/.bashrc
 else
-    echo "fnm ya está instalado."
+    echo "Starship ya está instalado."
 fi
 
 mkdir -p ~/.config && starship preset bracketed-segments -o ~/.config/starship.toml
+
+# Rust-lang
+if ! command -v rustc >/dev/null 2>&1; then
+    echo "Rust no está instalado. Ejecutando script de instalación..."
+    curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+else
+    echo "Rust ya está instalado."
+fi
+. "$HOME/.cargo/env"
