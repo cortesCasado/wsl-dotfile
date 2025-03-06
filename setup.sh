@@ -30,8 +30,14 @@ fnm install --lts
 corepack enable pnpm
 pnpm -v
 
+if ! command -v starship >/dev/null 2>&1; then
+    echo "Starship no está instalado. Ejecutando script de instalación..."
+    curl -sS https://starship.rs/install.sh | sh
+    echo -e '\n\n#Starship config\neval "$(starship init bash)"\n\n' >> ~/.bashrc
+    source ~/.bashrc
+else
+    echo "fnm ya está instalado."
+fi
 
-curl -sS https://starship.rs/install.sh | sh
-echo -e '\n\n#Starship config\neval "$(starship init bash)"\n\n' >> ~/.bashrc
-source ~/.bashrc
+mkdir ~/.config/
 starship preset bracketed-segments -o ~/.config/starship.toml
