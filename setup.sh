@@ -17,13 +17,13 @@ fi
 PROGRAMS="unzip fzf zoxide"
 sudo apt install "$PROGRAMS"
 
-# Verifica si 'fnm' está instalado
+# Verifica si 'starship' está instalado
 if ! command -v fnm >/dev/null 2>&1; then
     echo "fnm no está instalado. Ejecutando script de instalación..."
     curl -fsSL https://fnm.vercel.app/install | bash
     source ~/.bashrc
 else
-    echo "fnm ya está instalado."
+    echo "starship ya está instalado."
 fi
 
 fnm install --lts
@@ -39,5 +39,4 @@ else
     echo "fnm ya está instalado."
 fi
 
-mkdir ~/.config/
-starship preset bracketed-segments -o ~/.config/starship.toml
+mkdir -p ~/.config && starship preset bracketed-segments -o ~/.config/starship.toml
