@@ -29,3 +29,9 @@ fi
 fnm install --lts
 corepack enable pnpm
 pnpm -v
+
+
+curl -sS https://starship.rs/install.sh | sh
+echo -e '\n\n#Starship config\neval "$(starship init bash)"\n\n' >> ~/.bashrc
+source ~/.bashrc
+starship preset bracketed-segments -o ~/.config/starship.toml
